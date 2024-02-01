@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Petycja NAZWA</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <!-- Include pdf-lib -->
+    <script src="https://unpkg.com/pdf-lib@latest/dist/pdf-lib.min.js"></script>
+
+    <div class="container">
+        <h2>Petycja NAZWA</h2>
+        <p><strong>1. Zapoznaj się z treścią petycji</strong> (dane uzupełnimy w kolejnym kroku): <a href="petycja_wzor.pdf" target="_blank">wzór petycji pod linkiem tutaj</a></p>
+        <p><strong>2. Uzupełnij poniższe dane</strong> i kliknij przycisk poniżej, aby pobrać plik z petycją uzupełnioną Twoimi danymi (<span class="todo-text">todo: obecnie bez polskich znaków</span>): </p>
+
+        <form id="pdfForm">
+            <label for="name">Imię i nazwisko:</label>
+            <input type="text" id="name" placeholder="Jan Kowalski" onfocus="if(this.value == 'Jan Kowalski') { this.value = ''; }" required>
+
+            <label for="address">Adres:</label>
+            <input type="text" id="address" placeholder="ul. Nazwa Ulicy 1/2A" onfocus="if(this.value == 'ul. Nazwa Ulicy 1/2A') { this.value = ''; }" required>
+
+            <label for="zipcode">Kod pocztowy:</label>
+            <input type="text" id="zipcode" placeholder="30-111" onfocus="if(this.value == '30-111') { this.value = ''; }" required>
+
+            <label for="city">Miasto:</label>
+            <input type="text" id="city" placeholder="Kraków" onfocus="if(this.value == 'Kraków') { this.value = ''; }" required>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" placeholder="you@email.com" onfocus="if(this.value == 'you@email.com') { this.value = ''; }" required>
+
+            <label for="consent">
+                <input type="checkbox" id="consent" name="consent" checked>
+                Wyrażam zgodę na publikację mojego imienia i nazwiska na stronach Sejmu RP
+            </label>
+
+            <button type="button" id="fillPdf">Pobierz petycję z Twoimi danymi</button>
+        </form>
+
+        <p><strong>3. Podpisz pobraną petycję Podpisem Zaufanym w portalu <a href="https://www.gov.pl/web/mobywatel">mObywatel</a> i ją od razu pobierz. Będzie potrzebna w kolejnym kroku.</strong></p>
+        <p><strong>4. Załaduj plik z tak wypełnioną i podpisaną petycją, a następnie wciśnij przycisk poniżej aby przesłać ją do nas.</strong></p>
+
+        <form id="submissionForm">
+            <input type="file" id="signedPetition" name="signedPetition">
+            <button type="submit">Prześlij podpisaną petycję do nas</button>
+        </form>        
+    </div>
+
+    <script src="script.js" charset="UTF-8"></script>
+</body>
+</html>
