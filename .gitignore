@@ -19,6 +19,9 @@ dist/
 # Package files
 *.jar
 
+# Zip compressed files
+*.zip
+
 # Maven
 target/
 dist/
