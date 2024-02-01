@@ -97,9 +97,13 @@ document.getElementById('submissionForm').addEventListener('submit', function(ev
     const formData = new FormData();
     formData.append('file', file);
 
+    const headers = new Headers();
+    headers.append('content-disposition', `attachment; filename="${file.name}"`); // Set the original file name
+
     fetch(url, {
         method: 'POST',
         body: formData, // formData will set the correct Content-Type header
+        headers: headers,
     })
     .then(response => {
         if (response.ok) {
