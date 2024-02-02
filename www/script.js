@@ -92,6 +92,19 @@ document.getElementById('submissionForm').addEventListener('submit', function(ev
         return;
     }
 
+    const submitBtn = document.getElementById('submitBtn');
+    const spinner = document.getElementById('spinner');
+
+    // Disable the button and show the spinner
+    submitBtn.disabled = true;
+    spinner.style.display = 'inline-block';
+
+    // Set a timeout to re-enable the button and hide the spinner after 5 seconds
+    setTimeout(() => {
+        submitBtn.disabled = false;
+        spinner.style.display = 'none';
+    }, 5000);
+
     const url = 'https://83msjx8vtf.execute-api.eu-west-1.amazonaws.com/prod/e-petitions';
 
     const formData = new FormData();
@@ -121,7 +134,6 @@ document.getElementById('submissionForm').addEventListener('submit', function(ev
         alert('Error uploading file.');
     });
 });
-
 
 // Event listener for the button
 document.getElementById('fillPdf').addEventListener('click', fillPDFAndDownload);

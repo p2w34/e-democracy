@@ -23,7 +23,6 @@ h2 {
     color: #ff0000;
 }
 
-
 ol {
     line-height: 1.6;
     font-weight: bold;
@@ -49,18 +48,32 @@ input[type="text"], input[type="email"], input[type="file"] {
     border-radius: 4px;
 }
 
-button {
+button, .progress-button {
+    position: relative;
     padding: 10px 20px;
     margin-top: 10px;
-    background-color: #ff0000;
+    background-color: #ff4d4d;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    width: auto;
+    box-sizing: border-box;
 }
 
-button:hover {
+button:hover, .progress-button:hover {
     background-color: #cc0000;
+}
+
+button:disabled, .progress-button:disabled {
+    background-color: #ff4d4d;
+    cursor: default;
+}
+
+button:disabled:hover, .progress-button:disabled:hover {
+    background-color: #ff4d4d; /* keeps the background color unchanged on hover */
 }
 
 a {
@@ -69,4 +82,23 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.spinner {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 2px solid #fff;
+    border-top: 2px solid #e63946;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
 }

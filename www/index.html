@@ -42,9 +42,13 @@
         <p><strong>4. Załaduj plik z tak wypełnioną i podpisaną petycją, a następnie wciśnij przycisk poniżej aby przesłać ją do nas.</strong></p>
 
         <form id="submissionForm">
-            <input type="file" id="signedPetition" name="signedPetition">
-            <button type="submit">Prześlij podpisaną petycję do nas</button>
-        </form>        
+            <input type="file" id="signedPetition" name="signedPetition" required>
+            <button type="submit" id="submitBtn" class="progress-button">
+                Prześlij podpisaną petycję do nas
+                <div id="spinner" class="spinner" style="display: none;"></div>
+            </button>  
+        </form>
+        
     </div>
 
     <script src="script.js" charset="UTF-8"></script>
