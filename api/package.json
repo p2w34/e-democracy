@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.1548.0"
+    "@ninja-labs/verify-pdf": "^1.0.0",
+    "aws-sdk": "^2.1548.0",
+    "fs": "^0.0.1-security",
+    "pdf-parse": "^1.1.1",
+    "string-similarity": "^4.0.4"
   }
 }
