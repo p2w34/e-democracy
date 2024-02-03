@@ -49,11 +49,11 @@ async function fillPDFAndDownload() {
     name2Field.setText(document.getElementById('name').value);
     placeAndDate2Field.setText(document.getElementById('city').value + ", " + getPresentDate());
 
+    const fields = form.getFields();
+    fields.forEach(field => {
+        field.enableReadOnly();
+    });
 
-    // Flatten the form to prevent further editing
-    form.flatten();
-
-    // Serialize the PDFDocument to bytes
     const pdfBytes = await pdfDoc.save();
 
     // Trigger the download
