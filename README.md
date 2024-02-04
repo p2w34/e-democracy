@@ -98,7 +98,7 @@ This might be cumbersome, as we have different invocations for:
 
 Below a collection of requests you may want to try (from the author: apologies if they don't work, it's hard to keep them up to date)
 
-(outdated as the project moved to operate on .pdf.xml files)
+(outdated as the project moved to operate on .pdf.xml files)  
 - `curl -X POST -H "Content-Type: application/pdf" -H "content-disposition: attachment; filename=\"petycja_20240126_kdbytv.pdf\"" --data-binary @"/Users/pawelbroda/Downloads/petycja_20240126_kdbytv.pdf" https://83msjx8vtf.execute-api.eu-west-1.amazonaws.com/prod/e-petitions`
 
 - `base64 -i /Users/pawelbroda/Downloads/petycja_20240126_kdbytv.pdf -o encoded_file.txt`
