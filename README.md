@@ -1,3 +1,7 @@
+## E-petitions architecture
+
+todo: draw a diagram showing a typical user scenario
+
 ## E-petitions - WWW setup
 1. Create e-petitions-www bucket and upload www files
 - enable static hosting
@@ -19,7 +23,8 @@
 
 ## E-petitions - API AWS setup
 1. API GATEWAY (HTTP)
-- might be a problem due to CORS; then set it properly on AWS, for testing I set Access-Control-Allow-Origin as * and Access-Control-Allow-Headers as *, and Access-Control-Allow-Methods as POST
+- might be a problem due to CORS; then set it properly on AWS, for testing I set Access-Control-Allow-Origin etc. as *
+- one API for all the endpoints 
 2. S3 Bucket (enable versioning to err on the safe side)
 3. Lambda. To prepare .zip file for AWS Lambda:
   a   if .zip file too large (>50MB, upload to an S3 bucket first)  
@@ -27,6 +32,7 @@
   c. `npm install` # creates node_modules/ based on package json and package-lock.json files  
   d. `zip -r e-petitions-api.zip .`
   e. on AWS console, in: "Edit runtime settings" in the   handler name put index.petitions ([name of lambda file].[name of exported method])  
+  e. see logs in CloudWatch
 4. IAM. In the Lambda config page see the role and add to it following policy:
 ```
 {
@@ -92,6 +98,7 @@ This might be cumbersome, as we have different invocations for:
 
 Below a collection of requests you may want to try (from the author: apologies if they don't work, it's hard to keep them up to date)
 
+(outdated as the project moved to operate on .pdf.xml files)
 - `curl -X POST -H "Content-Type: application/pdf" -H "content-disposition: attachment; filename=\"petycja_20240126_kdbytv.pdf\"" --data-binary @"/Users/pawelbroda/Downloads/petycja_20240126_kdbytv.pdf" https://83msjx8vtf.execute-api.eu-west-1.amazonaws.com/prod/e-petitions`
 
 - `base64 -i /Users/pawelbroda/Downloads/petycja_20240126_kdbytv.pdf -o encoded_file.txt`

@@ -10,54 +10,51 @@ async function listFormFields() {
     console.log("Field names in the PDF:", fieldNames);
 }
 
-async function fillPDFAndDownload() {
-    // Fetch the existing PDF
-    const url = 'petycja_wzor.pdf';
-    const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer());
+function fetchCounterValue() {
+    fetch('https://83msjx8vtf.execute-api.eu-west-1.amazonaws.com/prod/e-petitions-counter')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('counterValue').textContent = data.counter;
+        })
+        .catch(error => {
+            console.error('Error fetching the counter value:', error);
+            document.getElementById('counterValue').textContent = 'Counter unavailable';
+        });
+}
 
-    // Load a PDFDocument from the existing PDF bytes
-    const pdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes);
+window.onload = fetchCounterValue;
 
-    // Get the form
-    const form = pdfDoc.getForm();
+async function sendFormDataAndDownloadPDF() {
+    const formData = {
+        name: document.getElementById('name').value,
+        address: document.getElementById('address').value,
+        zipcode: document.getElementById('zipcode').value,
+        city: document.getElementById('city').value,
+        email: document.getElementById('email').value,
+        consent: document.getElementById('consent').checked
+        // Add any other form fields you want to send to Lambda
+    };
 
-    // Fill the form fields
-    const nameField = form.getTextField('Name');
-    const addressField = form.getTextField('Address');
-    const zipCodeField = form.getTextField('ZipCode');
-    const cityField = form.getTextField('City');
-    const emailField = form.getTextField('Email');
-    const consentField = form.getTextField('Consent');
-    const placeAndDateField = form.getTextField('PlaceAndDate');
-    
-    const name2Field = form.getTextField('Name2');
-    const placeAndDate2Field = form.getTextField('PlaceAndDate2');
+    try {
+        const response = await fetch('https://83msjx8vtf.execute-api.eu-west-1.amazonaws.com/prod/e-petitions-form', {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
 
-    nameField.setText(document.getElementById('name').value);
-    addressField.setText(document.getElementById('address').value);
-    zipCodeField.setText(document.getElementById('zipcode').value);
-    cityField.setText(document.getElementById('city').value);
-    emailField.setText(document.getElementById('email').value);
-    placeAndDateField.setText(document.getElementById('city').value + ", " + getPresentDate());
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
 
-    if (document.getElementById('consent').checked) {
-        consentField.setText('TAK');
-    } else {
-        consentField.setText('NIE');
+        const filename = 'petycja_z_danymi_osobowymi.pdf';
+        const pdfBlob = await response.blob();
+        download(pdfBlob, filename, 'application/pdf');
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error generating PDF');
     }
-
-    name2Field.setText(document.getElementById('name').value);
-    placeAndDate2Field.setText(document.getElementById('city').value + ", " + getPresentDate());
-
-    const fields = form.getFields();
-    fields.forEach(field => {
-        field.enableReadOnly();
-    });
-
-    const pdfBytes = await pdfDoc.save();
-
-    // Trigger the download
-    download(pdfBytes, generateFilename(), "application/pdf");
 }
 
 // Utility function for downloading the PDF
@@ -68,6 +65,7 @@ function download(data, filename, type) {
     link.download = filename;
     link.click();
 }
+
 
 // Utility function to get present date in format dd.mm.yyyy
 function getPresentDate() {
@@ -87,8 +85,11 @@ document.getElementById('submissionForm').addEventListener('submit', function(ev
     }
 
     const file = fileInput.files[0];
-    if (file.type !== 'application/pdf') {
-        alert('Please select a PDF file.');
+    const fileNameParts = file.name.split('.');
+    const fileExtension = fileNameParts[fileNameParts.length - 1];
+
+    if (fileExtension.toLowerCase() !== 'xml') {
+        alert('Please select an XML file.');
         return;
     }
 
@@ -99,44 +100,48 @@ document.getElementById('submissionForm').addEventListener('submit', function(ev
     submitBtn.disabled = true;
     spinner.style.display = 'inline-block';
 
-    // Set a timeout to re-enable the button and hide the spinner after 5 seconds
-    setTimeout(() => {
-        submitBtn.disabled = false;
-        spinner.style.display = 'none';
-    }, 5000);
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        const base64String = event.target.result.split(',')[1]; // Extract base64 part
+        sendFileToServer(base64String);
+    };
+    reader.readAsDataURL(file);
 
-    const url = 'https://83msjx8vtf.execute-api.eu-west-1.amazonaws.com/prod/e-petitions';
-
-    const formData = new FormData();
-    formData.append('file', file);
-
-    const headers = new Headers();
-    headers.append('content-disposition', `attachment; filename="${file.name}"`); // Set the original file name
-
-    fetch(url, {
-        method: 'POST',
-        body: formData, // formData will set the correct Content-Type header
-        headers: headers,
-    })
-    .then(response => {
-        if (response.ok) {
-            alert("Dziękujemy!\n\nZłożymy w Twoim imieniu petycję i oczywiście pozostajemy w kontakcie.\nBędzie nam bardzo miło, jeżeli powiesz o nas swoim znajomym - to bardzo pomaga!");
-            return response.json();
-        } else {
-            throw new Error('Network response was not ok.');
-        }
-    })
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        alert('Error uploading file.');
-    });
+    function sendFileToServer(base64String) {
+        const url = 'https://83msjx8vtf.execute-api.eu-west-1.amazonaws.com/prod/e-petitions';
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ fileData: base64String })
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Dziękujemy!\n\nZłożymy w Twoim imieniu petycję i oczywiście pozostajemy w kontakcie.\nBędzie nam bardzo miło, jeżeli powiesz o nas swoim znajomym - to bardzo pomaga!");
+                return response.json();
+            } else {
+                throw new Error('Network response was not ok.');
+            }
+        })
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error uploading file.');
+        })
+        .finally(() => {
+            // Re-enable the button and hide the spinner after the process is complete
+            submitBtn.disabled = false;
+            spinner.style.display = 'none';
+        });
+    }
 });
 
+
 // Event listener for the button
-document.getElementById('fillPdf').addEventListener('click', fillPDFAndDownload);
+document.getElementById('fillPdf').addEventListener('click', sendFormDataAndDownloadPDF);
 
 const generateRandomString = () => {
     let result = '';

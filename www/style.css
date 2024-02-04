@@ -23,6 +23,23 @@ h2 {
     color: #ff0000;
 }
 
+.counter-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.counter-description {
+    font-size: 1.5em;
+    color: red;
+    font-weight: bold;
+}
+
+#counterValue {
+    font-size: 2em;
+    color: red;
+    font-weight: bold;
+}
+
 ol {
     line-height: 1.6;
     font-weight: bold;
