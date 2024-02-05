@@ -1,6 +1,6 @@
-## E-petitions architecture
+## E-petitions flow
 
-todo: draw a diagram showing a typical user scenario
+![e-petitions flow](e-petitions.drawio.png)
 
 ## E-petitions - WWW setup
 1. Create e-petitions-www bucket and upload www files
