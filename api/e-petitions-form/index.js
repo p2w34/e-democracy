@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const fs = require('fs');
 const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');
 
@@ -34,10 +35,10 @@ exports.e_petitions_form = async (event, context) => {
 
         const pdfDocBytes = await pdfDoc.save();
 
+        storePdfHash(pdfDocBytes);
+
         const pdfBuffer = Buffer.from(pdfDocBytes);
         const pdfBase64 = pdfBuffer.toString('base64');
-
-        storePdfHash()
 
         return {
             statusCode: 200,
@@ -57,6 +58,16 @@ exports.e_petitions_form = async (event, context) => {
     }
 };
 
-function storePdfHash() {
+function storePdfHash(fileBytes) {
+    const hash = computeHash(fileBytes);
+
+    console.log("hash: ", hash);
+
     // todo: implement hash storage
+}
+
+function computeHash(fileBytes) {
+    const hash = crypto.createHash('sha256');
+    hash.update(fileBytes);
+    return hash.digest('hex');
 }

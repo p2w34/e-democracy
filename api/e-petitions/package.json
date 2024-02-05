@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.1550.0"
+    "aws-sdk": "^2.1550.0",
+    "crypto": "^1.0.1",
+    "xmldom": "^0.6.0",
+    "xpath": "^0.0.34"
   }
 }

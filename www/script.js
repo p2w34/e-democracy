@@ -48,7 +48,7 @@ async function sendFormDataAndDownloadPDF() {
             throw new Error('Network response was not ok');
         }
 
-        const filename = 'petycja_z_danymi_osobowymi.pdf';
+        const filename = 'petycja.pdf';
         const pdfBlob = await response.blob();
         download(pdfBlob, filename, 'application/pdf');
     } catch (error) {
