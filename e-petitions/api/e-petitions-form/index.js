@@ -24,9 +24,16 @@ exports.e_petitions_form = async (event, context) => {
         const pdfDoc = await PDFDocument.load(pdfBytes);
         const form = pdfDoc.getForm();
 
+        form.getTextField('CityPetition').setText(formData.city + ", /elektroniczny znacznik czasu/");
+
         form.getTextField('Name').setText(formData.name);
-        form.getTextField('Address').setText(formData.address);
-        // todo: set other fields once petition template is clarified
+        form.getTextField('StreetAndBuildingNumber').setText(formData.streetAndBuildingNumber);
+        form.getTextField('ZipCode').setText(formData.zipcode);
+        form.getTextField('City').setText(formData.city);
+        form.getTextField('Email').setText(formData.email);
+
+        form.getTextField('CityConsent').setText(formData.city + ", /elektroniczny znacznik czasu/");
+        form.getTextField('NameConsent').setText(formData.name);
 
         const fields = form.getFields();
         fields.forEach(field => {

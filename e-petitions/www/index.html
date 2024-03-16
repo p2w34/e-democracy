@@ -17,15 +17,15 @@
         </div>
 
         <h2>Petycja NAZWA</h2>
-        <p><strong>1. Zapoznaj się z treścią petycji</strong> (dane uzupełnimy w kolejnym kroku): <a href="petycja_wzor.pdf" target="_blank">wzór petycji pod linkiem tutaj</a></p>
-        <p><strong>2. Uzupełnij poniższe dane</strong> i kliknij przycisk poniżej, aby pobrać plik z petycją uzupełnioną Twoimi danymi (<span class="todo-text">todo: obecnie bez polskich znaków</span>): </p>
+        <p><strong>1. Zapoznaj się z treścią petycji (dane uzupełnimy w kolejnym kroku):</strong> <a href="petycja_wzor.pdf" target="_blank">wzór petycji pod linkiem tutaj</a></p>
+        <p><strong>2. Uzupełnij poniższe dane i kliknij przycisk poniżej, aby pobrać plik z petycją uzupełnioną Twoimi danymi:</strong></p>
 
         <form id="pdfForm">
             <label for="name">Imię i nazwisko:</label>
             <input type="text" id="name" placeholder="Jan Kowalski" onfocus="if(this.value == 'Jan Kowalski') { this.value = ''; }" required>
 
-            <label for="address">Adres:</label>
-            <input type="text" id="address" placeholder="ul. Nazwa Ulicy 1/2A" onfocus="if(this.value == 'ul. Nazwa Ulicy 1/2A') { this.value = ''; }" required>
+            <label for="streetAndBuildingNumber">Ulica i numer budynku:</label>
+            <input type="text" id="streetAndBuildingNumber" placeholder="ul. Przykładowa 1/2A" onfocus="if(this.value == 'ul. Nazwa Ulicy 1/2A') { this.value = ''; }" required>
 
             <label for="zipcode">Kod pocztowy:</label>
             <input type="text" id="zipcode" placeholder="30-111" onfocus="if(this.value == '30-111') { this.value = ''; }" required>
@@ -35,11 +35,6 @@
 
             <label for="email">Email:</label>
             <input type="text" id="email" placeholder="you@email.com" onfocus="if(this.value == 'you@email.com') { this.value = ''; }" required>
-
-            <label for="consent">
-                <input type="checkbox" id="consent" name="consent" checked>
-                Wyrażam zgodę na publikację mojego imienia i nazwiska na stronach Sejmu RP
-            </label>
 
             <button type="button" id="fillPdf">Pobierz petycję z Twoimi danymi</button>
         </form>

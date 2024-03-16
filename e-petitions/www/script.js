@@ -27,12 +27,10 @@ window.onload = fetchCounterValue;
 async function sendFormDataAndDownloadPDF() {
     const formData = {
         name: document.getElementById('name').value,
-        address: document.getElementById('address').value,
+        streetAndBuildingNumber: document.getElementById('streetAndBuildingNumber').value,
         zipcode: document.getElementById('zipcode').value,
         city: document.getElementById('city').value,
-        email: document.getElementById('email').value,
-        consent: document.getElementById('consent').checked
-        // Add any other form fields you want to send to Lambda
+        email: document.getElementById('email').value
     };
 
     try {
