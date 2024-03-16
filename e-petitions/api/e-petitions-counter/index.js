@@ -5,7 +5,7 @@ exports.e_petitions_counter = async (event) => {
     return {
         statusCode: 200,
         body: JSON.stringify({
-            counter: 12237
+            counter: 1234
         })
     };
 };
