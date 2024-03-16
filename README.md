@@ -1,11 +1,10 @@
 # Projekt e-demokracja
 
-Projekt e-demokracja jest wyrazem sprzeciwu przeciwko pewnej utrzymywanej przez rząd narracji, i **kolejnym dowodem**, że jest ona nieprawdziwa.
+Projekt e-demokracja jest wyrazem sprzeciwu przeciwko pewnej utrzymywanej przez rząd narracji.
 Otóz rząd twierdzi, że obywatele nadal muszą składać wlasnoręczne podpisy na papierze, w tym PESEL. Że nie jesteśmy gotowi, aby w obywatelskich inicjatywach ustawodawczych składać podpisy w formie elektronicznej przez Internet.
 To samo dotyczy wniosków o referendum czy różnego rodzaju samych już referendów, w tym lokalnych, stanowiących bardzo ważny element demokracji bezpośredniej.
 List poparcia dla partii itd.
-**Słowa ministra Gramatyki z dnia 07.02.2024: "Jedyną barierą, która w dniu dzisiejszym oddziela nas od tworzenia takich systemów jest rozporządzenie eIDAS 2" są nieprawdziwe!
-Jeżeli już czegokolwiek brakuje, to dobrej woli ze strony ustawodawcy.**
+**Słowom ministra Gramatyki z dnia 07.02.2024: "Jedyną barierą, która w dniu dzisiejszym oddziela nas od tworzenia takich systemów jest rozporządzenie eIDAS 2" brakuje przekonującej argumentacji. Ciężko nie odnieść wrażenia, że jeżeli już czegokolwiek brakuje, to dobrej woli ze strony ustawodawcy.**
 
 W zależności od tego, czy posiada się dostęp do serwerów administracji publicznej oferujących integrację z serwerami Podpisu Zaufanego czy nie:
 1. [bez integracji] wystarczy postawić prostą stronę WWW z której obywatele ściągają dany dokument, podpisują go Podpisem Zaufanym a następnie uploadują. I organizacja, która za tym stoi, wszystkie te podpisane pliki wysyła do danego organu administracji publicznej. Ta idea przyświeca projektowi e-demokracja w tym repozytorium.
