@@ -15,6 +15,6 @@ Projekt [e-petycje](./e-petitions) to bardzo prosty projekt strony WWW (+częś�
 niemniej jednak jest to świetny sposób aby pokazać prostotę idea użycia Podpisu Zaufanego przez obywateli. Każdy może sobie pobrać petycję, podpisać ją Podpisem Zaufanym i odesłać. My na prawdę jesteśmy już od dawna gotowi na podpisy przez Internet!
 
 # Dodatkowa lektura:
-- stanowisko rządu w (artykule Instytutu spraw obywatelskich)[https://instytutsprawobywatelskich.pl/swiatelko-w-tunelu-rzadowym-obywatelska-inicjatywa-ustawodawcza-w-senacie/?fbclid=IwAR34deEucpZsz1JXhpy0tvhn_MHhJsjbQNjjcKLt3ALNJN_pDbmYuHNL-oU]
+- stanowisko rządu w [artykule Instytutu Spraw Obywatelskich](https://instytutsprawobywatelskich.pl/swiatelko-w-tunelu-rzadowym-obywatelska-inicjatywa-ustawodawcza-w-senacie/?fbclid=IwAR34deEucpZsz1JXhpy0tvhn_MHhJsjbQNjjcKLt3ALNJN_pDbmYuHNL-oU)
 - [dla programistów] kod w tym repozytorium
 - [dla programistów/osób pracujących nad tego typu projektami] [wymagania odnośnie petycji składanych do sejmu](https://referenda.pl/newsy/czy-istnieje-mozliwosci-zautomatyzowania-wysylania-petycji-podpisanych-przez-ambasadorow-w-sposob-elektroniczny/)
