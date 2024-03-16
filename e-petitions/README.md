@@ -49,11 +49,7 @@
 }
 ```
 ## Development tips
-### 1. To use SSH, one has to add SSH key to the bitbucket account, NOT repo! 
-- Select the Settings cog on the top navigation bar -> From the Settings dropdown menu, select Personal Bitbucket settings -> Under Security, select SSH keys
-- git add remote git@bitbucket.org:generatorreferendow/e-petitions.git
-
-### 2. Debugging node.js Lambda code locally. Is there a good approach to it? 
+### 1. Debugging node.js Lambda code locally. Is there a good approach to it? 
 One can for sure use the most simple approach, which is go with typical hacking backed by:
 - `npm init -y` # to set up nodejs project from scratch
 - `npm install -g nodemon` # to reload automatically changes to server.js etc.
