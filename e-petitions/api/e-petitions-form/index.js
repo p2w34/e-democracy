@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 const fs = require('fs');
 const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');
+const fontkit = require('@pdf-lib/fontkit');
 
 exports.e_petitions_form = async (event, context) => {
 
@@ -22,7 +23,10 @@ exports.e_petitions_form = async (event, context) => {
 
         const pdfBytes = fs.readFileSync('petycja_wzor.pdf');
         const pdfDoc = await PDFDocument.load(pdfBytes);
+        const customFont = await setCustomFont(pdfDoc);
         const form = pdfDoc.getForm();
+        // Update PDF form field appearances with the custom font
+        updateFieldAppearances(form, customFont);
 
         form.getTextField('CityPetition').setText(formData.city + ", /elektroniczny znacznik czasu/");
 
@@ -77,4 +81,28 @@ function computeHash(fileBytes) {
     const hash = crypto.createHash('sha256');
     hash.update(fileBytes);
     return hash.digest('hex');
+}
+
+async function setCustomFont(pdfDoc) {
+    const fontBytes = await new Promise((resolve) =>
+        fs.readFile('Arial.ttf', (err, data) => {
+            if (err) resolve(null);
+            else resolve(data);
+        }),
+    );
+    let customFont = null;
+    if (fontBytes) {
+        pdfDoc.registerFontkit(fontkit);
+        customFont = await pdfDoc.embedFont(fontBytes);
+    }
+    return customFont;
+}
+
+function updateFieldAppearances(form, customFont) {
+    if (customFont) {
+        const rawUpdateFieldAppearances = form.updateFieldAppearances.bind(form);
+        form.updateFieldAppearances = function () {
+            return rawUpdateFieldAppearances(customFont);
+        };
+    }
 }
