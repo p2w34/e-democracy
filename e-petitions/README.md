@@ -1,5 +1,7 @@
 ## E-petitions flow
 
+The flow is presented on the diagram below. Note that **it relies on .XML format for signed files**. The default .PDF is not used as it would be very hard to extract original file from the signed one.
+
 ![e-petitions flow](e-petitions.drawio.png)
 
 ## E-petitions - WWW setup
