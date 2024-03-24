@@ -22,3 +22,7 @@ Poniżej wygląd strony WWW dla przykładowej e-petycji - prawda, że proste?
 - stanowisko rządu w [artykule Instytutu Spraw Obywatelskich](https://instytutsprawobywatelskich.pl/swiatelko-w-tunelu-rzadowym-obywatelska-inicjatywa-ustawodawcza-w-senacie/?fbclid=IwAR34deEucpZsz1JXhpy0tvhn_MHhJsjbQNjjcKLt3ALNJN_pDbmYuHNL-oU)
 - [dla programistów] kod w tym repozytorium
 - [dla programistów/osób pracujących nad tego typu projektami] oprócz treści ustaw, [wymagania odnośnie petycji składanych do sejmu ustalone telefonicznie z kancelarią sejmu](https://referenda.pl/newsy/czy-istnieje-mozliwosci-zautomatyzowania-wysylania-petycji-podpisanych-przez-ambasadorow-w-sposob-elektroniczny/)
+
+# Inne
+1. Kod w repozytorium nie jest kompletny - zobacz listę 'issue'. Pozwala on pomimo to na zbiórkę podpisów, chociaż bez weryfikacji, która byłaby przydatna (tnz. sprawdzenie, czy użytkownicy uplądują prawidłowo podpisane dokumenty o dokładnie takej treści, które zostały dla nich wygenerowane). **Jeżeli jesteś osobą chętną do dalszego rozwoju i wdrożenia projektu - autor bardzo chętnie z Tobą porozmawia! Zachęcającym jest fakt, że wszystkie wymagania są już rozpoznane!**
+2. Główne README oraz opisy problemów/usprawnień do zaimplementowania - język polski. Uzasadnia to fakt, że repozytorium przyświeca idea poprawy wybranych elementów polskiego ustroju. Reszta dokumentacji/zmienne w kodzie/opisy komitów etc. - standardowo język angielski.
